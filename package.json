@@ -1,0 +1,33 @@
+{
+  "name": "first-redux",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node build.js"
+  },
+  "author": "",
+  "browserify": {
+    "transform": [
+      "es6ify",
+      "brfs"
+    ]
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "brfs": "^1.4.3",
+    "browserify": "^13.0.0",
+    "es6ify": "^1.6.0"
+  },
+  "dependencies": {
+    "react": "^0.14.7",
+    "react-addons-create-fragment": "^0.14.7",
+    "react-addons-css-transition-group": "^0.14.7",
+    "react-addons-update": "^0.14.7",
+    "react-dom": "^0.14.7",
+    "react-hyperscript": "^2.2.2",
+    "react-redux": "^4.4.0",
+    "redux": "^3.3.1"
+  }
+}
