@@ -1,7 +1,6 @@
 // import 'babel-core/polyfill'
 
-const React = require('react')
-const Component = React.Component;
+import React, { Component } from 'react';
 
 var createFragment = require('react-addons-create-fragment');
 var immutabilityHelpers = require('react-addons-update');
@@ -11,6 +10,6 @@ const render = require('react-dom').render
 const h = require('react-hyperscript')
 
 var container = document.getElementById('main')
-render(h('h1, 'We win!'), container)
+render(h('h1', 'Hi Alexa!!'), container)
 
 console.log('we win!')
