@@ -41,7 +41,7 @@ class Header extends Component {
 
     const state = store.getState()
     const message = state.map(function(char, i) {
-      return h(Letter, { letter: char, index: i })
+      return h(Letter, { letter: char, index: `letter${i}` })
     })
 
     return h('h1', {
