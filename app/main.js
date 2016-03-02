@@ -25,14 +25,13 @@ let store = createStore(reducer);
 class Letter extends Component {
   render() {
     const { letter } = this.props
-    console.dir(letter);
-    console.log(typeof letter)
+    const key = this.props.index
     return h(ReactCSSTransitionGroup, {
       transitionName: "letter",
       transitionEnterTimeout: 500,
       transitionLeaveTimeout: 300,
     }, [
-      h('span', letter)
+      h('span', { key }, letter)
     ])
   }
 }
@@ -41,8 +40,8 @@ class Header extends Component {
   render() {
 
     const state = store.getState()
-    const message = state.map(function(char) {
-      return h(Letter, { letter: char })
+    const message = state.map(function(char, i) {
+      return h(Letter, { letter: char, index: i })
     })
 
     return h('h1', {
