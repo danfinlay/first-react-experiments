@@ -26,13 +26,7 @@ class Letter extends Component {
   render() {
     const { letter } = this.props
     const key = this.props.index
-    return h(ReactCSSTransitionGroup, {
-      transitionName: "letter",
-      transitionEnterTimeout: 500,
-      transitionLeaveTimeout: 300,
-    }, [
-      h('span', { key }, letter)
-    ])
+    return h('span', { key }, letter)
   }
 }
 
@@ -41,7 +35,7 @@ class Header extends Component {
 
     const state = store.getState()
     const message = state.map(function(char, i) {
-      return h(Letter, { letter: char, index: `letter${i}` })
+      return h(Letter, { letter: char, index: `letter${char}${i}` })
     })
 
     return h('h1', {
@@ -49,7 +43,13 @@ class Header extends Component {
         ev.preventDefault();
         store.dispatch({ type: 'EXCITEMENT' })
       },
-    }, message)
+    }, [
+      h(ReactCSSTransitionGroup, {
+        transitionName: "letter",
+        transitionEnterTimeout: 500,
+        transitionLeaveTimeout: 300,
+      }, message)
+    ])
   }
 }
 
