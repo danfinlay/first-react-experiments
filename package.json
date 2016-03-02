@@ -5,11 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "watch": "watchify app/main.js -t babelify -p livereactload -o dist/bundle.js"
+    "watch": "watchify app/main.js -p livereactload -o dist/bundle.js"
   },
   "author": "",
   "browserify": {
     "transform": [
+      "babelify",
       "brfs"
     ]
   },
@@ -19,7 +20,6 @@
     "babelify": "^7.2.0",
     "brfs": "^1.4.3",
     "browserify": "^13.0.0",
-    "es6ify": "^1.6.0",
     "livereactload": "^2.2.0",
     "livereloadify": "^2.0.0",
     "react-proxy": "^1.1.2"
