@@ -1,0 +1,22 @@
+body, html {
+  background: #DDD;
+  color: 222;
+}
+
+.letter-enter {
+  opacity: 0.01;
+}
+
+.letter-enter.letter-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.letter-leave {
+  opacity: 1;
+}
+
+.letter-leave.letter-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
+}

@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import createFragment from 'react-addons-create-fragment'
 import immutabilityHelpers from 'react-addons-update'
-import CSSTransitionGroup from 'react-addons-css-transition-group'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import { render } from 'react-dom'
 import h from 'react-hyperscript'
 
@@ -22,24 +22,34 @@ const reducer = (state = ['Hi Alexa'], action) => {
 
 let store = createStore(reducer);
 
+class Letter extends Component {
+  render() {
+    const { letter } = this.props
+    console.dir(letter);
+    console.log(typeof letter)
+    return h(ReactCSSTransitionGroup, {
+      transitionName: "letter",
+      transitionEnterTimeout: 500,
+      transitionLeaveTimeout: 300,
+    }, [
+      h('span', letter)
+    ])
+  }
+}
+
 class Header extends Component {
   render() {
-    let message = ''
 
     const state = store.getState()
-    state.forEach(function(char) {
-      message += char
+    const message = state.map(function(char) {
+      return h(Letter, { letter: char })
     })
 
     return h('h1', {
       onClick(ev) {
-        // ev.preventDefault();
+        ev.preventDefault();
         store.dispatch({ type: 'EXCITEMENT' })
       },
-      onKeyPress(ev) {
-        ev.preventDefault();
-        store.dispatch({ type: 'SADNESS' })
-      }
     }, message)
   }
 }
@@ -49,7 +59,7 @@ class Footer extends Component {
 
     return h('button', {
       onClick(ev) {
-        // ev.preventDefault();
+        ev.preventDefault();
         store.dispatch({ type: 'SADNESS' })
       },
     }, 'Make Sadder')
@@ -61,16 +71,12 @@ class Body extends Component {
   render() {
 
     return h('div', [
-      React.createElement(Header),
-      React.createElement(Footer),
+      h(Header),
+      h(Footer),
     ]);
   }
 }
 
-
 var container = document.getElementById('main')
-render(React.createElement(Body), container)
-
-store.subscribe(() => render(React.createElement(Body), container));
-
-console.log('we win!')
+store.subscribe(() => render(h(Body), container));
+render(h(Body), container)
