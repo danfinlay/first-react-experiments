@@ -46,7 +46,7 @@ class Header extends Component {
     }, [
       h(ReactCSSTransitionGroup, {
         transitionName: "letter",
-        transitionEnterTimeout: 500,
+        transitionEnterTimeout: 300,
         transitionLeaveTimeout: 300,
       }, message)
     ])
