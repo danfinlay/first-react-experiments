@@ -1,6 +1,6 @@
 To live-reload, 
 
-`npm install http-server -S`
+`npm install http-server -g`
 
 Then go to the `dist` folder and run:
 
